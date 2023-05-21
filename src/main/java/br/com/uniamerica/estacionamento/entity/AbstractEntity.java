@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
     @Id @Getter
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",nullable = false,unique = true)
-    private long id;
+    private Long id;
 
     @Getter @Setter
     @Column(name = "cadastro",nullable = false)
