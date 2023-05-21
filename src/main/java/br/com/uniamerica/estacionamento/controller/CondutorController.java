@@ -28,8 +28,7 @@ public class CondutorController {
     public ResponseEntity<?> findByIdParam(@RequestParam("id") final Long id){
         final Condutor condutor = this.condutorRepository.findById(id).orElse(null);
 
-        return condutor == null
-                ? ResponseEntity.badRequest().body("Condutor não encontrado!")
+        return condutor == null ? ResponseEntity.badRequest().body("Condutor não encontrado!")
                 : ResponseEntity.ok(condutor);
     }
 
