@@ -1,8 +1,9 @@
 
 
-# API Estacionamento - Spring  ![Teste](https://cdn-icons-png.flaticon.com/128/5968/5968282.png)
+# API Estacionamento - Spring <img src="https://cdn-icons-png.flaticon.com/128/5968/5968282.png" height=28>
 
-## Índice  
+
+## Índice <img src="https://cdn-icons-png.flaticon.com/128/839/839860.png" height=28>
 * 1 - [Introdução](#introducao)  
 * 2 - [Tecnologias Utilizadas](#tecnologias)
 * 3 - [Principais Funcionalidades](#funcionalidades)
@@ -11,23 +12,22 @@
 * 6 - [Contribua](#contribua)
 
 
-
 <br></br>
 
 <a name="introducao"></a> 
-## Introdução     
+## Introdução  <img src="https://cdn-icons-png.flaticon.com/128/4129/4129437.png" height=28>
 Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do projeto é ensinar tecnologias como Java, Springboot e PostgreSQL para os estudantes de Engenharia de Software da Uniamérica Descomplica.
 
 <br></br>
-<a name="informacoes"></a>
-## Informações 
+<a name="informacoes"></a>    
+## Informações <img src="https://cdn-icons-png.flaticon.com/128/471/471662.png" height=28>
 * Professor Eduardo Sganderla  
 * Faculdade Uniamérica Descomplica  
 
 
 <br></br>
-<a name="funcionalidades"></a>
-## Principais Funcionalidades  
+
+## Principais Funcionalidades  <a name="funcionalidades"></a>  <img src="https://cdn-icons-png.flaticon.com/128/2989/2989113.png" height=28>
 * Registro de entrada de saída de veículos
 * Cálculo do valor a ser pago
 * Gerar relatório para o cliente
@@ -36,14 +36,21 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 
 <br></br>
 <a name="utilizar"></a>
-## Como utilizar 
+## Como utilizar   <img src="https://cdn-icons-png.flaticon.com/128/3240/3240831.png" height=28>
 * git clone https://github.com/xtokram/estacionamento.git
-* Abra o projeto com o IntelliJ IDEA e aguarde ele instalar as dependências do projeto  
-<br></br>
+* Abra o projeto com o IntelliJ IDEA e aguarde ele instalar as dependências do projeto.   
 
+<br></br>
+ ## Rotas <img src="https://cdn-icons-png.flaticon.com/128/1674/1674969.png" height=28>
+    /api/
+    
+
+
+
+<br></br>
 <a name="tecnologias"></a>  
-## Tecnologias Utilizadas
-    Lista de tecnologias utilizadas neste projeto.
+## Tecnologias Utilizadas  <img src="https://cdn-icons-png.flaticon.com/128/1087/1087927.png" height=28>
+    Lista de tecnologias utilizadas neste projeto.   
 * Java (JDK 19)
 * Springboot 3.0.4
 * Maven
@@ -52,8 +59,8 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 
 <br></br>
 
-<a name="contribua"> </a> 
-## Contribua  
+<a name="contribua"> </a>   
+## Contribua  <img src="https://cdn-icons-png.flaticon.com/128/2562/2562464.png" height=28>
 * 1 - Faça um fork do projeto
 * 2 - Crie uma nova branch: git checkout -b minha-nova-feature
 * 3 - Faça suas alterações e adicione-as ao commit: git add .
