@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
 @Entity
@@ -23,7 +24,7 @@ public class Condutor extends AbstractEntity{
         private String telefone;
         @Getter @Setter
         @Column(name = "tempoPago")
-        private LocalTime tempoPago;
+        private BigDecimal tempoPago;
         @Getter @Setter
         @Column(name = "tempoDesconto")
         private LocalTime tempoDesconto;
@@ -31,7 +32,7 @@ public class Condutor extends AbstractEntity{
     public Condutor() {
     }
 
-    public Condutor(String nome, String cpf, String telefone, LocalTime tempoPago, LocalTime tempoDesconto){
+    public Condutor(String nome, String cpf, String telefone, BigDecimal tempoPago, LocalTime tempoDesconto){
             this.setNome(nome);
             this.setCpf(cpf);
             this.setTelefone(telefone);
