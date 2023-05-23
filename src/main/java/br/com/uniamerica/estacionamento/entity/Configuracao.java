@@ -13,61 +13,62 @@ import java.time.LocalTime;
 @Entity
 @Table(name="configuracoes", schema="public")
     public class Configuracao extends AbstractEntity{
-        @Getter @Setter
-        @Column(name="valorHora", nullable = false)
-        private BigDecimal valorHora;
+    @Getter @Setter
+    @Column(name = "valor_hora", nullable = true, unique = true)
+    private BigDecimal valorHora;
 
-        @Getter @Setter
-        @Column(name="valorMinutoMulta", nullable = false)
-        private BigDecimal valorMinutoMulta;
+    @Getter @Setter
+    @Column(name = "valor_minuto_hora", nullable = true, unique = true)
+    private BigDecimal valorMinutoMulta;
 
-        @Getter @Setter
-        @Column(name="inicioExpediente", nullable = false)
-        private LocalTime inicioExpediente;
+    @Getter @Setter
+    @Column(name = "inicio_expediente", nullable = true, unique = true)
+    private LocalTime inicioExpediente;
 
-        @Getter @Setter
-        @Column(name="fimExpediente", nullable = false)
-        private LocalTime fimExpediente;
+    @Getter @Setter
+    @Column(name = "fim_expediente", nullable = true, unique = true)
+    private LocalTime fimExpediente;
 
-        @Getter @Setter
-        @Column(name = "tempoParaDesconto", nullable = false)
-        private LocalTime tempoParaDesconto;
+    @Getter @Setter
+    @Column(name = "tempo_para_desconto", nullable = true, unique = true)
+    private Integer tempoParaDesconto;
 
-        @Getter @Setter
-        @Column(name="tempoDesconto", nullable = false)
-        private LocalTime tempoDesconto;
+    @Getter @Setter
+    @Column(name = "tempo_de_desconto", nullable = true, unique = true)
+    private BigDecimal tempoDeDesconto;
 
-        @Getter @Setter
-        @Column(name="gerarDesconto", nullable = false)
-        private boolean gerarDesconto;
+    @Getter @Setter
+    @Column(name = "gerar_desconto", nullable = true, unique = true)
+    private Boolean gerarDesconto;
 
-        @Getter @Setter
-        @Column(name="vagasMoto", nullable = false)
-        private int vagasMoto;
+    @Getter @Setter
+    @Column(name = "vagas_moto", nullable = true, unique = true)
+    private Integer vagasMotos;
 
-        @Getter @Setter
-        @Column(name="vagasCarro", nullable=false)
-        private int vagasCarro;
+    @Getter @Setter
+    @Column(name = "vagas_vans", nullable = true, unique = true)
+    private Integer vagasVans;
 
-        @Getter @Setter
-        @Column(name="vagasVan", nullable = false)
-        private int vagasVan;
+    @Getter @Setter
+    @Column(name = "vagas_carro", nullable = true, unique = true)
+    private Integer vagasCarro;
 
 
-        public Configuracao(){
-        }
+    public Configuracao(){
+    }
 
     public Configuracao(BigDecimal valorHora, BigDecimal valorMinutoMulta, LocalTime inicioExpediente, LocalTime fimExpediente,
-                        LocalTime tempoParaDesconto, LocalTime tempoDesconto, boolean gerarDesconto, int vagasMoto, int vagasCarro, int vagasVan) {
+                        Integer tempoParaDesconto, BigDecimal tempoDeDesconto, Boolean gerarDesconto, Integer vagasMotos,
+                        Integer vagasVans, Integer vagasCarro) {
         this.setValorHora(valorHora);
         this.setValorMinutoMulta(valorMinutoMulta);
         this.setInicioExpediente(inicioExpediente);
         this.setFimExpediente(fimExpediente);
         this.setTempoParaDesconto(tempoParaDesconto);
-        this.setTempoDesconto(tempoDesconto);
+        this.setTempoDeDesconto(tempoDeDesconto);
         this.setGerarDesconto(gerarDesconto);
-        this.setVagasMoto(vagasMoto);
+        this.setVagasMotos(vagasMotos);
+        this.setVagasVans(vagasVans);
         this.setVagasCarro(vagasCarro);
-        this.setVagasMoto(vagasVan);
     }
 }

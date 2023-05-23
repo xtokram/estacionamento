@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
     private Long id;
 
     @Getter @Setter
-    @Column(name = "cadastro",nullable = false)
+    @Column(name = "cadastro")
     private LocalDateTime cadastro;
     @Getter @Setter
     @Column(name = "atualizacao")

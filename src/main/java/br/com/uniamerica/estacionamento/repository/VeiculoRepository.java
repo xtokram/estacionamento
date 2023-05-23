@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Repository
-public interface VeiculoRepository extends JpaRepository<Modelo, Long> {
+public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
+
     @Query("from Movimentacao where Veiculo = :veiculo")
     public List<Movimentacao> findMovimentacaoByVeiculo(@Param("veiculo") final Veiculo veiculo);
 

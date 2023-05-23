@@ -8,15 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="marca", schema="public")
+@Table(name = "tb_marcas", schema = "public")
 public class Marca extends AbstractEntity{
-    @Getter @Setter
-    @Column(name="marca", nullable = false)
+    @Getter
+    @Column(name = "nome", nullable = true, unique = true)
     private String nome;
-
-    public Marca(){}
-
-    public Marca(String nome){
-        this.setNome(nome);
-    }
 }
+
