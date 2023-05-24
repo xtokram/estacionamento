@@ -32,33 +32,26 @@ public class CondutorController {
                 : ResponseEntity.ok(condutor);
     }
 
-
     @GetMapping("/lista")
     public ResponseEntity<?> listaCompleta(){
-
         return ResponseEntity.ok(this.condutorRepository.findAll());
     }
-
-
 
     @PostMapping
     public ResponseEntity<?> cadastrar (@RequestBody final Condutor condutor) {
 
         try{
             this.condutorService.cadastrar(condutor);
-            return ResponseEntity.ok("Regitro realizado com sucesso.");
-        } catch (DataIntegrityViolationException erro){ //erro de violação de integridade de dados
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
-        } catch (RuntimeException erro){ //erro de varais exceções de tempo de execução
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
-        } catch (Exception erro){ // Se ocorrer outra exceção nao capturada pelos blocos anteriores
-            return ResponseEntity.badRequest().body("Erro"+erro.getMessage());
+            return ResponseEntity.ok("Registro realizado com sucesso.");
+        } catch (DataIntegrityViolationException erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
+        } catch (RuntimeException erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
+        } catch (Exception erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
 
     }
-
-
-
     @PutMapping
     public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody final Condutor condutor){
         try{

@@ -42,12 +42,26 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 
 <br></br>
  ## Rotas <img src="https://cdn-icons-png.flaticon.com/128/1674/1674969.png" height=28>
+    /api/condutor  
+    /api/condutor/lista
     /api/
     
 
 
 
 <br></br>
+
+## Validações <img src="https://cdn-icons-png.flaticon.com/128/10839/10839350.png" height=28>
+* CONDUTOR  
+    * GET
+        * ID nulo retornará "Condutor não encontrado".  
+    * POST  (Cadastro)
+        * Nome vazio
+        * CPF vazio, inválido ou já cadastrado.
+        * Telefone vazio, inválido ou já cadastrado.
+        
+          
+
 <a name="tecnologias"></a>  
 ## Tecnologias Utilizadas  <img src="https://cdn-icons-png.flaticon.com/128/1087/1087927.png" height=28>
     Lista de tecnologias utilizadas neste projeto.   
