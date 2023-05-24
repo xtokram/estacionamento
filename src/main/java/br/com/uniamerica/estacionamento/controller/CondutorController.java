@@ -64,9 +64,9 @@ public class CondutorController {
             this.condutorRepository.save(condutor);
             return ResponseEntity.ok("Registro atualizado");
         }catch (DataIntegrityViolationException ex){
-            return ResponseEntity.internalServerError().body("Error"+ex.getCause().getMessage());
+            return ResponseEntity.internalServerError().body(ex.getCause().getMessage());
         }catch (RuntimeException ex){
-            return ResponseEntity.internalServerError().body("Erro"+ex.getMessage());
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
@@ -78,7 +78,7 @@ public class CondutorController {
             this.condutorService.deletar(condutorData);
             return ResponseEntity.ok("Registro deletado");
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
     }
 }

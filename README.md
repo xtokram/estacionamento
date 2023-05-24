@@ -43,11 +43,15 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 <br></br>
  ## Rotas <img src="https://cdn-icons-png.flaticon.com/128/1674/1674969.png" height=28>
     /api/condutor  
-    /api/condutor/lista
-    /api/
+        -> /api/condutor (POST)
+        -> ?id={valor} (GET | PUT | DELETE)
+        -> /lista (GET)
+      
+    /api/configuracao 
+        -> /api/configuracao (POST)
+        -> ?id={valor} (PUT | DELETE)
+        -> /lista (GET)
     
-
-
 
 <br></br>
 
@@ -55,11 +59,17 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 * CONDUTOR  
     * GET
         * ID nulo retornará "Condutor não encontrado".  
-    * POST  (Cadastro)
+    * POST (Criar Cadastro)
         * Nome vazio
         * CPF vazio, inválido ou já cadastrado.
         * Telefone vazio, inválido ou já cadastrado.
-        
+    * PUT (Editar Cadastro)
+        * Formatação e existência de todos os dados acima.
+    * DELETE (Deletar Cadastro)
+        * Verifica se o condutor que deve ser deletado está ativo ou não, se não está ativo, será deletado. Se estiver ativo, será considerado inativo.  
+          
+* CONFIGURAÇÃO
+
           
 
 <a name="tecnologias"></a>  
