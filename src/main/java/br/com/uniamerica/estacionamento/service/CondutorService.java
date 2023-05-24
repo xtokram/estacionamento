@@ -31,6 +31,7 @@ public class CondutorService {
         String regexCpf = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$";
 
         Assert.isTrue(condutor.getNome() != null , "ERRO: Nenhum nome foi inserido!");
+        Assert.isTrue(condutor.getNome().length() > 2, "ERRO: Nenhum nome foi fornecido");
         Assert.isTrue(condutor.getCpf() != null, "ERRO: CPF não informado!");
         Assert.isTrue(condutor.getCpf().matches(regexCpf), "ERRO: CPF inválido!");
         Assert.isTrue(this.condutorRepository.findCpf(condutor.getCpf()).isEmpty(), "ERRO: CPF já cadastrado.");
@@ -51,7 +52,6 @@ public class CondutorService {
         String regexCpf = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$";
 
         final Condutor condutorBanco = this.condutorRepository.findById(condutor.getId()).orElse(null);
-
 
         Assert.isTrue(condutor.getTelefone() != null, "Error digite um telefone");
         Assert.isTrue(!condutor.getTelefone().matches(regexTelefone), "Mascara de telefone invalida");

@@ -8,5 +8,4 @@ public class EstacionamentoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EstacionamentoApplication.class, args);
 	}
-
 }

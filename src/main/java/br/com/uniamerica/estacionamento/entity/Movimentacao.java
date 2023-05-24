@@ -10,75 +10,48 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-@Table(name="movimentacoes", schema="public")
+@Table(name = "tb_movimentacoes", schema = "public")
 public class Movimentacao extends AbstractEntity{
-    @Getter @Setter
-    @JoinColumn(name = "veiculos", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "veiculo", nullable = true, unique = true)
     private Veiculo veiculo;
-
     @Getter @Setter
-    @JoinColumn(name="condutores", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "condutor", nullable = true)
     private Condutor condutor;
-
     @Getter @Setter
-    @Column(name="Entrada", nullable = false)
+    @Column(name = "entrada", nullable = true)
     private LocalDateTime entrada;
-
     @Getter @Setter
-    @Column(name="saida", nullable = false)
+    @Column(name = "saida")
     private LocalDateTime saida;
-
     @Getter @Setter
-    @Column(name="tempo", nullable = false)
-    private LocalTime tempo;
-
+    @Column(name = "hora")
+    private Integer hora;
     @Getter @Setter
-    @Column(name="tempoDesconto", nullable = false)
+    @Column(name = "minutos")
+    private Integer minutos;
+    @Getter @Setter
+    @Column(name = "tempo_desconto")
     private LocalTime tempoDesconto;
-
     @Getter @Setter
-    @Column(name="tempoMulta", nullable = false)
+    @Column(name = "tempo_multa")
     private LocalTime tempoMulta;
-
     @Getter @Setter
-    @Column(name="valorDesconto", nullable = false)
+    @Column(name = "valor_desconto")
     private BigDecimal valorDesconto;
-
     @Getter @Setter
-    @Column(name="valorMulta", nullable = false)
+    @Column(name = "valor_multa")
     private BigDecimal valorMulta;
-
     @Getter @Setter
-    @Column(name="valorTotal", nullable = false)
+    @Column(name = "valor_total")
     private BigDecimal valorTotal;
-
     @Getter @Setter
-    @Column(name="valorHora", nullable = false)
+    @Column(name = "valor_hora")
     private BigDecimal valorHora;
-
     @Getter @Setter
-    @Column(name="valorHoraMulta", nullable = false)
-    private BigDecimal valorHoralMulta;
-
-    public Movimentacao(){}
-
-    public Movimentacao(Veiculo veiculo, Condutor condutor, LocalDateTime entrada,
-                        LocalDateTime saida, LocalTime tempo, LocalTime tempoDesconto,
-                        LocalTime tempoMulta, BigDecimal valorDesconto, BigDecimal valorMulta,
-                        BigDecimal valorTotal, BigDecimal valorHora, BigDecimal valorHoralMulta) {
-        this.setVeiculo(veiculo);
-        this.setCondutor(condutor);
-        this.setEntrada(entrada);
-        this.setSaida(saida);
-        this.setTempo(tempo);
-        this.setTempoDesconto(tempoDesconto);
-        this.setTempoMulta(tempoMulta);
-        this.setValorDesconto(valorDesconto);
-        this.setValorMulta(valorMulta);
-        this.setValorTotal(valorTotal);
-        this.setValorHora(valorHora);
-        this.setValorHoralMulta(valorHoralMulta);
-    }
+    @Column(name = "valor_hora_multa")
+    private BigDecimal valorHoraMulta;
 }

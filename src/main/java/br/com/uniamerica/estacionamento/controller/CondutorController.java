@@ -28,38 +28,30 @@ public class CondutorController {
     public ResponseEntity<?> findByIdParam(@RequestParam("id") final Long id){
         final Condutor condutor = this.condutorRepository.findById(id).orElse(null);
 
-        return condutor == null
-                ? ResponseEntity.badRequest().body("Condutor não encontrado!")
+        return condutor == null ? ResponseEntity.badRequest().body("Condutor não encontrado!")
                 : ResponseEntity.ok(condutor);
     }
 
-
     @GetMapping("/lista")
     public ResponseEntity<?> listaCompleta(){
-
         return ResponseEntity.ok(this.condutorRepository.findAll());
     }
-
-
 
     @PostMapping
     public ResponseEntity<?> cadastrar (@RequestBody final Condutor condutor) {
 
         try{
             this.condutorService.cadastrar(condutor);
-            return ResponseEntity.ok("Regitro realizado com sucesso.");
-        } catch (DataIntegrityViolationException erro){ //erro de violação de integridade de dados
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
-        } catch (RuntimeException erro){ //erro de varais exceções de tempo de execução
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
-        } catch (Exception erro){ // Se ocorrer outra exceção nao capturada pelos blocos anteriores
-            return ResponseEntity.badRequest().body("Erro"+erro.getMessage());
+            return ResponseEntity.ok("Registro realizado com sucesso.");
+        } catch (DataIntegrityViolationException erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
+        } catch (RuntimeException erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
+        } catch (Exception erro){
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
 
     }
-
-
-
     @PutMapping
     public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody final Condutor condutor){
         try{
@@ -72,9 +64,9 @@ public class CondutorController {
             this.condutorRepository.save(condutor);
             return ResponseEntity.ok("Registro atualizado");
         }catch (DataIntegrityViolationException ex){
-            return ResponseEntity.internalServerError().body("Error"+ex.getCause().getMessage());
+            return ResponseEntity.internalServerError().body(ex.getCause().getMessage());
         }catch (RuntimeException ex){
-            return ResponseEntity.internalServerError().body("Erro"+ex.getMessage());
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 
@@ -86,7 +78,7 @@ public class CondutorController {
             this.condutorService.deletar(condutorData);
             return ResponseEntity.ok("Registro deletado");
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
     }
 }
