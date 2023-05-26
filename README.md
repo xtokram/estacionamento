@@ -21,7 +21,7 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 <br></br>
 <a name="informacoes"></a>    
 ## Informações <img src="https://cdn-icons-png.flaticon.com/128/471/471662.png" height=28>
-* Professor Eduardo Sganderla  
+* Professores Eduardo Sganderla & Gustavo Colombelli
 * Faculdade Uniamérica Descomplica  
 
 
@@ -39,6 +39,7 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 ## Como utilizar   <img src="https://cdn-icons-png.flaticon.com/128/3240/3240831.png" height=28>
 * git clone https://github.com/xtokram/estacionamento.git
 * Abra o projeto com o IntelliJ IDEA e aguarde ele instalar as dependências do projeto.   
+* As rotas estão mapeadas na sessão "rotas" deste documento, bastando fazer a requisição utilizando o método específico de cada endpoint.  
 
 <br></br>
  ## Rotas <img src="https://cdn-icons-png.flaticon.com/128/1674/1674969.png" height=28>
@@ -52,6 +53,13 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
         -> ?id={valor} (PUT | DELETE)
         -> /lista (GET)
     
+    /api/marca
+        -> /api/marca (POST)
+        -> /lista (GET)
+        -> ?id={valor} (PUT | DELETE)
+        
+    /api/modelo
+        -> /api/modelo
 
 <br></br>
 

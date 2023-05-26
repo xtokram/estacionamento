@@ -31,7 +31,7 @@ public class VeiculoService {
         Assert.isTrue(veiculo.getTipo() != null, "Erro, digite um tipo");
         Assert.isTrue(veiculo.getCor() != null, "Erro, digite uma cor");
         Assert.isTrue(veiculo.getPlaca() != null, "Erro, digite uma placa");
-        String regexPlaca = "^\\[A-Z]{3}\\-\\d{4}";
+        String regexPlaca = "^[A-Z]{3}\\-\\d{4}";
         Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "Erro, formato da placa incorreto");
         Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"Erro, placa já existente.");
 
@@ -47,7 +47,7 @@ public class VeiculoService {
         Assert.isTrue(veiculo.getTipo() != null, "Erro, digite um tipo de veiculo");
 
         Assert.isTrue(veiculo.getPlaca() != null, "Erro, digite uma placa");
-        String regexPlaca = "^\\[A-Z]{3}-\\d{4}$";
+        String regexPlaca = "^^[A-Z]{3}\\-\\d{4}";
         Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "Erro, formato da placa incorreto");
         Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"Erro, placa já existente.");
 
