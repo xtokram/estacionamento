@@ -41,11 +41,11 @@ public class VeiculoController {
             this.veiculoService.cadastrar(veiculo);
             return ResponseEntity.ok("Registro realizado com sucesso");
         }catch (DataIntegrityViolationException erro){
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         } catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         } catch (Exception erro){
-            return ResponseEntity.badRequest().body("Erro" + erro.getMessage());
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
     }
     @PutMapping
@@ -60,9 +60,9 @@ public class VeiculoController {
             this.veiculoRepository.save(veiculo);
             return ResponseEntity.ok("Registro atualizado");
         }catch (DataIntegrityViolationException erro){
-            return ResponseEntity.internalServerError().body("Erro" + erro.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body(erro.getCause().getCause().getMessage());
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro" + erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class VeiculoController {
             this.veiculoService.deletar(veiculoBanco);
             return ResponseEntity.ok("Registro deletado");
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
     }
 }
