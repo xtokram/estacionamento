@@ -6,56 +6,12 @@ export default defineComponent({
   components: {
   },
 });
-/*import { Condutor } from '@/model/condutor';
-import { CondutorCliente } from '@/client/condutor.client';
-import { Notification } from '@/model/notification'
 
-export default class condutorForm extends Condutor {
-  public notification : Notification = new Notification()
-  public condutor : Condutor = new Condutor
-  public CondutorCliente! : CondutorCliente
-
-  public mounted(): void {
-    this.CondutorCliente = new CondutorCliente()
-      console.log(this.nome)
-      console.log(this.telefone)
-      console.log(this.cpf)
-  }
-
-  public onClickCadastrar(): void {
-    this.CondutorCliente.cadastrar(this.condutor)
-      .then(
-        success => {
-          this.notification = this.notification.new(true, 'notification is-success', 'Condutor cadastrado com sucesso!!!');
-          this.onClickLimpar();
-      },
-      error => {
-        this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error);
-        this.onClickLimpar();
-      });
-  }
-
-  public onClickFecharNotificacao(): void {
-    this.notification = new Notification()
-  }
-  public onClickLimpar(): void {
-    this.condutor = new Condutor()
-  }
-}*/
 </script>
 
 <template>
-  <!--<div class="columns" v-if="notification.ativo">
-    <div class="column is-12">
-      <div :class="notification.classe">
-      <button @click="onClickFecharNotificacao()" class="delete" ></button>
-        {{ notification.mensagem }}
-      </div>
-    </div>
-  </div>-->
 
   <form >
-    <img height="132px" width="132px" src="../assets/condutor.png" alt=""/>
     <div class="row">
       <h1>Cadastrar condutor</h1>
       <div class="col">
@@ -84,7 +40,7 @@ export default class condutorForm extends Condutor {
 
 h1 { 
   font-size: 24px;
-  color: #35abe1;
+  color: white;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
 }

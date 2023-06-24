@@ -14,13 +14,14 @@ export default defineComponent({
 <template>
 <nav>
   <router-link to="/">
-    <img alt="Logo" width="24" height="24" src="@/assets/logo.png"/>
   </router-link>
   <div class="navbar">
     <router-link to="/">Home</router-link>
     <router-link to="/cadastrarcondutor">Cadastrar Condutor</router-link>
     <router-link to="/cadastrarmodelo">Cadastrar Modelo</router-link>
     <router-link to="/cadastrarmarca">Cadastrar Marca</router-link>
+    <router-link to="/cadastrarVeiculo">Cadastrar Veiculo</router-link>
+
   </div>
   </nav>
 <router-view/>
@@ -39,33 +40,34 @@ export default defineComponent({
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  top:70px;
-  position:relative;
+  align-items: top;
+  justify-content: center;
 }
 
 nav {
   background-color:none;
-  position:fixed;
+  position: absolute;
   top: 0px;
-  width: 550px;
+  left:0%;
+  width: 100%;
   height: 55px;   
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px;
-  border-bottom: #35abe1 solid;
+  padding: 2px;
+  border-bottom: black solid;
 a {
+    display: flex;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 0;
     list-style: none;
     text-decoration: none;
     color: #616161;
-    margin-right: 10px;
-    margin-left: 10px;
+    position:relative;
+    margin-right: 90px;
+    margin-left: 50px;
     &.router-link-exact-active {
-      color: #35abe1;
+      color: white;
     }
 }
 }
@@ -80,6 +82,8 @@ a {
 body {
   background-color:#1e1f1e;
 }
+
+
 
 
 </style>

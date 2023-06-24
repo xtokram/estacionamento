@@ -5,12 +5,12 @@ export default defineComponent({
   name: 'cadastrarmarca',
   components: {
   },
+
 });
 </script>
 
 <template>
-  <form >
-    <img height="132px" width="132px" src="../assets/marca.png" alt=""/>
+<form >
     <div class="row">
       <h1>Cadastrar Marca</h1>
       <div class="col">
@@ -32,8 +32,9 @@ export default defineComponent({
 }
 
 h1 { 
-  font-size: 24px;
-  color: #35abe1;
+  margin-top: 10px;
+  font-size: 32px;
+  color: white;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
 }
@@ -45,7 +46,7 @@ h1 {
   background-color: #2c3e50;
   color: #FFF;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 500;  
 }
 
 .btn:hover{

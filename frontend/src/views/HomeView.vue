@@ -9,54 +9,67 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="container">
-    <h1>Ultimas movimentações</h1>
-      <div >
-          <table class="table table-sm">
-              <thead class="table-secondary">
-                  <tr class="tabela_superior">
-                      <th>ID</th>
-                      <th>Veiculo</th>
-                      <th>Condutor</th>
-                      <th>Entrada</th>
-                      <th>Saida</th>
-                      <th>Valor Total</th>
-                      <th>Valor Hora</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      
-                      
-                  </tr>
-              </tbody>
-          </table>
+  <div class="titulo_estilo">Últimas movimentações</div>
+
+  <div class="div_tabela">
+    <table>
+      <thead>
+        <tr>
       
-      </div>
+          <th class="tabela_estilo" >Nome</th>
+          <th class="tabela_estilo">Placa</th>
+          <th class="tabela_estilo">Modelo</th>
+          <th class="tabela_estilo">Cor</th>
+          <th class="tabela_estilo">Entrada</th>
+          <th class="tabela_estilo">Saida</th>
+        </tr>
+      </thead>
+      <tbody>
+          <th class="tabela_estilo">Matheus H. Almeida</th>
+          <th class="tabela_estilo">XXX-666</th>
+          <th class="tabela_estilo">Accord</th>
+          <th class="tabela_estilo">Azul</th>
+          <th class="tabela_estilo">19:30</th>
+          <th class="tabela_estilo">22:30</th>  
+      </tbody>
+    </table>
+
   </div>
+
+  <button type="submit" class="btn">Cadastrar movimentação</button>
+
 </template>
-
-<script lang="ts">
-
-</script>
-
-
-
 <style scoped lang="scss">
 
-  .container{
-    
-  }
+.titulo_estilo{
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:-36%;
+  
+}
+.tabela_estilo{
+  color: white;
+  padding: 20px;
+}
+.div_tabela{
+  top: 15%;
+  position: absolute;
+  align-self: center;
+}
 
-  .tabela_superior{
-    background-color: blue;
-  }
+.btn{
+  background-color: #2c3e50;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 500; 
+  top:30%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
