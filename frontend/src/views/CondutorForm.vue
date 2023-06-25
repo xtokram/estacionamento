@@ -24,7 +24,7 @@ export default defineComponent({
         <input type="text" class="form-control" placeholder="CPF"  aria-label="CPF">
       </div>
     </div>
-    <button type="submit" class="btn">Cadastrar</button>
+    <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
   </form>
 </template>
 

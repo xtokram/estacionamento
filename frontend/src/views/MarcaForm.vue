@@ -14,11 +14,12 @@ export default defineComponent({
     <div class="row">
       <h1>Cadastrar Marca</h1>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Nome"  aria-label="Nome">
+        <input type="text" class="form-control" placeholder="Marca"  aria-label="Marca">
       </div>
     </div>  
   </form>
-  <button type="submit" class="btn">Cadastrar</button>
+  <div> <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button> </div>
+  
 </template>
 
 <style scoped lang="scss">
@@ -47,6 +48,7 @@ h1 {
   color: #FFF;
   font-size: 16px;
   font-weight: 500;  
+  
 }
 
 .btn:hover{

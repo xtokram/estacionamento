@@ -4,9 +4,10 @@ import { Movimentacao } from "@/model/movimentacao";
 import { PageRequest } from "@/model/page/page-request";
 import { PageResponse } from "@/model/page/page-response";
 
-export class MovimentacaoClient {
+class MovimentacaoClient {
 
     private axiosClient : AxiosInstance;
+    static listAll: any;
 
     constructor(){
         this.axiosClient = axios.create({
@@ -87,3 +88,5 @@ export class MovimentacaoClient {
 
     
 }
+
+export default new MovimentacaoClient();

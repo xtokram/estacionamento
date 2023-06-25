@@ -15,13 +15,12 @@ export default defineComponent({
 <nav>
   <router-link to="/">
   </router-link>
-  <div class="navbar">
+  <div class="nav">
     <router-link to="/">Home</router-link>
     <router-link to="/cadastrarcondutor">Cadastrar Condutor</router-link>
     <router-link to="/cadastrarmodelo">Cadastrar Modelo</router-link>
     <router-link to="/cadastrarmarca">Cadastrar Marca</router-link>
     <router-link to="/cadastrarVeiculo">Cadastrar Veiculo</router-link>
-
   </div>
   </nav>
 <router-view/>
@@ -52,7 +51,7 @@ nav {
   width: 100%;
   height: 55px;   
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 2px;
   border-bottom: black solid;

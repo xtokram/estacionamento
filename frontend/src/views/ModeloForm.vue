@@ -14,7 +14,7 @@ export default defineComponent({
     <div class="row">
       <h1>Cadastrar modelo</h1>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Nome"  aria-label="Nome">
+        <input type="text" class="form-control" placeholder="Modelo"  aria-label="Modelo">
       </div>
     </div>
     <div class="column is-offset-4 is-2" style="border-top-left-radius: 0px;">
@@ -25,7 +25,7 @@ export default defineComponent({
                     </select>
                 </div>
     </div>
-    <button type="submit" class="btn">Cadastrar</button>
+    <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
   </form>
 </template>
 

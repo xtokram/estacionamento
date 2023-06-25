@@ -1,46 +1,83 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-  },
-});
-</script>
-
 <template>
   <div class="titulo_estilo">Últimas movimentações</div>
 
   <div class="div_tabela">
     <table>
       <thead>
-        <tr>
-      
-          <th class="tabela_estilo" >Nome</th>
+        <tr   >
+          <th class="tabela_estilo">Nome</th>
+          <th class="tabela_estilo">Valor</th>
           <th class="tabela_estilo">Placa</th>
           <th class="tabela_estilo">Modelo</th>
-          <th class="tabela_estilo">Cor</th>
           <th class="tabela_estilo">Entrada</th>
           <th class="tabela_estilo">Saida</th>
         </tr>
       </thead>
-      <tbody>
-          <th class="tabela_estilo">Matheus H. Almeida</th>
-          <th class="tabela_estilo">XXX-666</th>
-          <th class="tabela_estilo">Accord</th>
-          <th class="tabela_estilo">Azul</th>
-          <th class="tabela_estilo">19:30</th>
-          <th class="tabela_estilo">22:30</th>  
+      
+      <tbody class="tabela_estilo">
+        <tr v-for="item in movimentacaoList" :key="item.id">
+          <th>{{item.condutor.nome}}</th>
+          <th>{{item.veiculo.placa}}</th>
+          <th>R$ {{item.valorTotal}}</th>
+          <th>{{item.veiculo.modelo.nome}}</th>
+          <th>{{ item.entrada }}</th>
+          <th>{{ item.saida }} </th>  
+          <th> <button type="button" class="btn btn-info btn-sm">Edit</button> </th>
+          <th>  </th>
+          <th> <button type="button" class="btn btn-info btn-sm">Remover</button> </th>
+        </tr>
       </tbody>
     </table>
-
+  
   </div>
+  <div class = "botao_cadastrar">
 
-  <button type="submit" class="btn">Cadastrar movimentação</button>
-
+  <RouterLink to="/cadastrarmovimentacao"> <button type="submit" class="btn btn-primary btn-sm" >Cadastrar movimentação</button> </RouterLink>
+  </div>
 </template>
-<style scoped lang="scss">
 
+<script lang="ts">
+
+import { defineComponent } from 'vue';
+
+import MovimentacaoClient from '@/client/movimentacao.client';
+import { Movimentacao } from '@/model/movimentacao';
+
+
+
+export default defineComponent({
+  name: 'MovimentacaoLista',
+  data() {
+    return {
+        movimentacaoList: new Array<Movimentacao>()
+    }
+  },
+  mounted() {
+    this.findAll();
+  },
+  methods: {
+
+    findAll() {
+      MovimentacaoClient.listAll()
+        .then(sucess => {
+          this.movimentacaoList = sucess
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+
+});
+
+</script>
+
+<style scoped lang="scss">
+.botao_cadastrar{
+  top: 70%;
+  position: absolute;
+  align-self: center;
+}
 .titulo_estilo{
   color: white;
   position: relative;
@@ -65,11 +102,11 @@ export default defineComponent({
   color: #FFF;
   font-size: 16px;
   font-weight: 500; 
-  top:30%;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.btn:hover{
+  transform: scale(1.05);
 }
 </style>
 
