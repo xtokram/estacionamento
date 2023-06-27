@@ -31,7 +31,7 @@ import java.time.LocalTime;
 
     @Getter @Setter
     @Column(name = "tempo_para_desconto", nullable = true, unique = true)
-    private Integer tempoParaDesconto;
+    private Long tempoParaDesconto;
 
     @Getter @Setter
     @Column(name = "tempo_de_desconto", nullable = true, unique = true)
@@ -58,7 +58,7 @@ import java.time.LocalTime;
     }
 
     public Configuracao(BigDecimal valorHora, BigDecimal valorMinutoMulta, LocalTime inicioExpediente, LocalTime fimExpediente,
-                        Integer tempoParaDesconto, BigDecimal tempoDeDesconto, Boolean gerarDesconto, Integer vagasMotos,
+                        Long tempoParaDesconto, BigDecimal tempoDeDesconto, Boolean gerarDesconto, Integer vagasMotos,
                         Integer vagasVans, Integer vagasCarro) {
         this.setValorHora(valorHora);
         this.setValorMinutoMulta(valorMinutoMulta);

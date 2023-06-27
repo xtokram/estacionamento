@@ -20,7 +20,7 @@ public class ModeloService {
     @Transactional(rollbackFor = Exception.class)
     public void cadastro(final Modelo modelo){
 
-        Assert.isTrue(modelo.getMarca() != null, "Erro, sem marca.");
+        Assert.isTrue(modelo.getMarca() != null, "Sem marca.");
         Assert.isTrue(!modelo.getNome().isBlank(), "Erro, nome vazio.");
 
         this.modeloRepository.save(modelo);
@@ -30,8 +30,8 @@ public class ModeloService {
     public void editar(final Modelo modelo){
         final Modelo modeloBanco = this.modeloRepository.findById(modelo.getId()).orElse(null);
 
-        Assert.isTrue(modelo.getMarca() != null, "Erro, sem marca.");
-        Assert.isTrue(modelo.getNome() != null, "Erro, digite um nome.");
+        Assert.isTrue(modelo.getMarca() != null, "Sem marca.");
+        Assert.isTrue(modelo.getNome() != null, "Digite um nome");
 
         this.modeloRepository.save(modelo);
     }

@@ -24,8 +24,8 @@ public class CondutorController {
     public CondutorService condutorService;
 
 
-    @GetMapping
-    public ResponseEntity<?> findByIdParam(@RequestParam("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findByIdParam(@PathVariable("id") final Long id){
         final Condutor condutor = this.condutorRepository.findById(id).orElse(null);
 
         return condutor == null ? ResponseEntity.badRequest().body("Condutor não encontrado!")
@@ -42,7 +42,7 @@ public class CondutorController {
 
         try{
             this.condutorService.cadastrar(condutor);
-            return ResponseEntity.ok("Registro realizado com sucesso.");
+            return ResponseEntity.ok("Condutor Cadastrado.");
         } catch (DataIntegrityViolationException erro){
             return ResponseEntity.badRequest().body(erro.getMessage());
         } catch (RuntimeException erro){
@@ -52,8 +52,8 @@ public class CondutorController {
         }
 
     }
-    @PutMapping
-    public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody final Condutor condutor){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar (@PathVariable("id") final Long id, @RequestBody final Condutor condutor){
         try{
             final Condutor condutorData = this.condutorRepository.findById(id).orElse(null);
 
@@ -64,21 +64,21 @@ public class CondutorController {
             this.condutorRepository.save(condutor);
             return ResponseEntity.ok("Registro atualizado");
         }catch (DataIntegrityViolationException ex){
-            return ResponseEntity.internalServerError().body(ex.getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Error"+ex.getCause().getMessage());
         }catch (RuntimeException ex){
-            return ResponseEntity.internalServerError().body(ex.getMessage());
+            return ResponseEntity.internalServerError().body("Erro"+ex.getMessage());
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete (@RequestParam("id") final Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable("id") final Long id){
         final Condutor condutorData = this.condutorRepository.findById(id).orElse(null);
 
         try{
             this.condutorService.deletar(condutorData);
             return ResponseEntity.ok("Registro deletado");
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
         }
     }
 }

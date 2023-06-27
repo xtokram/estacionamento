@@ -11,6 +11,20 @@
                 </div>
             </div>
         </div>
+        <div v-if="form === 'finalizar'" class="col-md-12 text-start">
+                <div :class="mensagem.css" role="alert">
+                    <strong>{{ mensagem.titulo }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <br>Entrada: {{ mensagem.mensagem.entrada }}
+                    <br>Saida: {{ mensagem.mensagem.saida }}
+                    <!--<br>Condutor: {{ mensagem.mensagem.condutor.nome }}-->
+                    <!-- <br>Veiculo: {{ mensagem.mensagem.veiculo.placa }}-->
+                    <br>Tempo: {{ mensagem.mensagem.tempo }} Horas
+                    <br>tempo para desconto:{{ mensagem.mensagem.tempoParaDesconto }} Horas
+                    <br>Valor Total: {{ mensagem.mensagem.valorTotal }} R$
+                    <br>Desconto: {{ mensagem.mensagem.desconto }} R$
+                </div>
+            </div>
         <div class="row">
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3">Placa do Veiculo *</label>
@@ -25,29 +39,26 @@
                 </select>
             </div>
             <div class="col-md-12 text-start">
-                <label class="form-label mt-3">Entrada *</label>
-                <input type="text" this class="form-control" placeholder="yyyy-mm-ddThh:min:ss" v-model="movimentacao.entrada">
+                <label class="form-label mt-3">Dia entrada *</label>
+                <input type="text" this class="form-control" placeholder="DD/MM/YYYY" v-model="entradaString">
             </div>
             <div class="col-md-12 text-start">
-                <label class="form-label mt-3">Saida *</label>
-                <input type="text" this class="form-control" v-model="movimentacao.saida">
+                <label class="form-label mt-3">Horário Entrada *</label>
+                <input type="text" this class="form-control" placeholder="08:00:00" v-model="horarioEntradaString">
             </div>
-            <div class="col-md-12 text-start">
-                <label class="form-label mt-3">Valor total *</label>
-                <input type="text" this class="form-control" v-model="movimentacao.valorTotal">
-            </div>
+            
         </div>
         
         <div class="row mt-3">
             <div class="col-md-3 offset-md-6">
                 <div class="d-grid gap-2">
-                    <router-link type="button" class="btn btn-primary" to="/movimentacao/lista">Voltar
+                    <router-link type="button" class="btn btn-secondary" to="/movimentacao/lista">Voltar
                     </router-link>
                 </div>
             </div>
             <div class="col-md-3 ">
                 <div class="d-grid gap-2">
-                    <button v-if="this.form === undefined" type="button" class="btn btn-success"
+                    <button v-if="this.form === undefined" type="button" class="btn btn-warning"
                         @click="onClickCadastrar()">
                         Cadastrar
                     </button>
@@ -60,6 +71,14 @@
                     <button v-if="this.form === 'finalizar'" type="button" class="btn btn-info" @click="FinalizarMovimentacao()">
                         Finalizar
                     </button>
+              <div v-if="relatorio" class="d-flex justify-content-center align-items-center vh-50">
+            <div class="card w-95">
+              <div class="card-header text-center">Relatório</div>
+              <div class="card-body">
+                <pre class="card-text">{{ relatorio }}</pre>
+              </div>
+            </div>
+          </div>
                 </div>
             </div>
         </div>
@@ -68,6 +87,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
+import { parseDate } from '../../dateUtils';
+
 
 import movimentacaoClient from '@/client/movimentacao.client';
 import { Movimentacao } from '@/model/movimentacao';
@@ -81,6 +103,7 @@ export default defineComponent({
     name: 'MovimentacaoFormulario',
     data() {
         return {
+            relatorio:'',
             movimentacao: new Movimentacao(),
             veiculo: new Array<Veiculo>(),
             condutor: new Array<Condutor>(),
@@ -89,7 +112,11 @@ export default defineComponent({
                 titulo: "" as string,
                 mensagem: "" as string,
                 css: "" as string
-            }
+            },
+            entradaString: '',
+            saidaString: '',
+            horarioEntradaString: '',
+            horarioSaidaString: ''
         }
     },
     computed: {
@@ -138,11 +165,14 @@ export default defineComponent({
                 })
         },
         onClickCadastrar() {
+            this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
+            //this.movimentacao.saida = parseDate(this.saidaString, this.horarioSaidaString)
             movimentacaoClient.cadastrar(this.movimentacao)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
-
+                    entradaString: ''
                     this.mensagem.ativo = true
+                    
                     this.mensagem.mensagem = sucess;
                     this.mensagem.titulo = "Parabens. ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
@@ -156,10 +186,12 @@ export default defineComponent({
                 })
         },
         onClickEditar() {
+            this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
+
             movimentacaoClient.editar(this.movimentacao.id, this.movimentacao)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
-
+    
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
                     this.mensagem.titulo = "Parabens. "
@@ -174,6 +206,7 @@ export default defineComponent({
                 });
         },
         onClickExcluir() {
+            this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
             movimentacaoClient.deletar(this.movimentacao.id)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
@@ -195,6 +228,7 @@ export default defineComponent({
                 this.movimentacao = new Movimentacao()
                 this.mensagem.ativo = true;
                 this.mensagem.mensagem = sucess;
+                console.log(sucess)
                 this.mensagem.titulo = "Parabens! ";
                 this.mensagem.css = "alert alert-success alert-dismissible fade show"
             })
@@ -206,7 +240,8 @@ export default defineComponent({
                 this.mensagem.css = "alert alert-danger alert-dismissible fade show"
             })
             
-        }
+        },
+        
         
     }
 })

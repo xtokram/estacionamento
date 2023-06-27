@@ -84,7 +84,6 @@ class MovimentacaoClient {
             return Promise.reject(error.response)
         }
     }
-
     
 }
 

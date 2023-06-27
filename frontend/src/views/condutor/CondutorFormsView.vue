@@ -29,13 +29,13 @@
         <div class="row mt-3">
             <div class="col-md-3 offset-md-6">
                 <div class="d-grid gap-2">
-                    <router-link type="button" class="btn btn-primary" to="/condutor/lista">Voltar
+                    <router-link type="button" class="btn btn-secondary" to="/condutor/lista">Voltar
                     </router-link>
                 </div>
             </div>
             <div class="col-md-3 ">
                 <div class="d-grid gap-2">
-                    <button v-if="this.form === undefined" type="button" class="btn btn-success"
+                    <button v-if="this.form === undefined" type="button" class="btn btn-light"
                         @click="onClickCadastrar()">
                         Cadastrar
                     </button>
@@ -103,14 +103,14 @@ export default defineComponent({
 
                     this.mensagem.ativo = true
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = error;
-                    this.mensagem.titulo = "Error. ";
+                    this.mensagem.titulo = "Falha - ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show"
                 })
         },
@@ -121,14 +121,14 @@ export default defineComponent({
 
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. "
+                    this.mensagem.titulo = "Sucesso - "
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = mensagemError;
-                    this.mensagem.titulo = "Error. ";
+                    this.mensagem.titulo = "Falha - ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show"
                 });
         },
@@ -143,7 +143,7 @@ export default defineComponent({
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = mensagemError;
-                    this.mensagem.titulo = "Error. ";
+                    this.mensagem.titulo = "Falha -  ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show"
                 })
 

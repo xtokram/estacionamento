@@ -21,7 +21,7 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 <br></br>
 <a name="informacoes"></a>    
 ## Informações <img src="https://cdn-icons-png.flaticon.com/128/471/471662.png" height=28>
-* Professores Eduardo Sganderla & Gustavo Colombelli
+* Professor Eduardo Sganderla  
 * Faculdade Uniamérica Descomplica  
 
 
@@ -39,27 +39,15 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 ## Como utilizar   <img src="https://cdn-icons-png.flaticon.com/128/3240/3240831.png" height=28>
 * git clone https://github.com/xtokram/estacionamento.git
 * Abra o projeto com o IntelliJ IDEA e aguarde ele instalar as dependências do projeto.   
-* As rotas estão mapeadas na sessão "rotas" deste documento, bastando fazer a requisição utilizando o método específico de cada endpoint.  
 
 <br></br>
  ## Rotas <img src="https://cdn-icons-png.flaticon.com/128/1674/1674969.png" height=28>
     /api/condutor  
-        -> /api/condutor (POST)
-        -> ?id={valor} (GET | PUT | DELETE)
-        -> /lista (GET)
-      
-    /api/configuracao 
-        -> /api/configuracao (POST)
-        -> ?id={valor} (PUT | DELETE)
-        -> /lista (GET)
+    /api/condutor/lista
+    /api/
     
-    /api/marca
-        -> /api/marca (POST)
-        -> /lista (GET)
-        -> ?id={valor} (PUT | DELETE)
-        
-    /api/modelo
-        -> /api/modelo
+
+
 
 <br></br>
 
@@ -67,17 +55,11 @@ Este é um projeto idealizado pelo professor Eduardo Sganderla, o objetivo do pr
 * CONDUTOR  
     * GET
         * ID nulo retornará "Condutor não encontrado".  
-    * POST (Criar Cadastro)
+    * POST  (Cadastro)
         * Nome vazio
         * CPF vazio, inválido ou já cadastrado.
         * Telefone vazio, inválido ou já cadastrado.
-    * PUT (Editar Cadastro)
-        * Formatação e existência de todos os dados acima.
-    * DELETE (Deletar Cadastro)
-        * Verifica se o condutor que deve ser deletado está ativo ou não, se não está ativo, será deletado. Se estiver ativo, será considerado inativo.  
-          
-* CONFIGURAÇÃO
-
+        
           
 
 <a name="tecnologias"></a>  

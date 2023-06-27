@@ -1,8 +1,10 @@
 package br.com.uniamerica.estacionamento.controller;
 
+import br.com.uniamerica.estacionamento.Recibo;
 import br.com.uniamerica.estacionamento.entity.Movimentacao;
 import br.com.uniamerica.estacionamento.repository.MovimentacaoRepository;
 import br.com.uniamerica.estacionamento.service.MovimentacaoService;
+import com.electronwill.nightconfig.core.conversion.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,8 @@ public class MovimentacaoController {
     @Autowired
     private MovimentacaoService movimentacaoService;
 
-    @GetMapping
-    public ResponseEntity<?> findByParam(@RequestParam("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findByParam(@PathVariable("id") final Long id){
         final Movimentacao movimentacao = this.movimentacaoRepository.findById(id).orElse(null);
 
         return movimentacao == null
@@ -34,17 +36,24 @@ public class MovimentacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrar (@RequestBody final Movimentacao movimentacao){
-        try{
-            this.movimentacaoRepository.save(movimentacao);
-            return ResponseEntity.ok("Registro realizado.");
-        }catch (Exception erro){
-            return ResponseEntity.badRequest().body("Erro" + erro.getMessage());
+    public ResponseEntity<?> cadastrar(@RequestBody final Movimentacao movimentacao){
+        try {
+            this.movimentacaoService.cadastrar(movimentacao);
+            return ResponseEntity.ok("Registrado com Sucesso");
+        }
+        catch (DataIntegrityViolationException e){
+            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+        }
+        catch (RuntimeException e){
+            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody final Movimentacao movimentacao){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar (@PathVariable("id") final Long id, @RequestBody final Movimentacao movimentacao){
         try{
             final Movimentacao movimentacaoBanco = this.movimentacaoRepository.findById(id).orElse(null);
 
@@ -61,23 +70,28 @@ public class MovimentacaoController {
         }
     }
 
-    @PutMapping("/saida")
-    public ResponseEntity<?> saida(@RequestParam("id") final Long id){
-        try{
-            this.movimentacaoService.saida(id);
-            return ResponseEntity.ok("Registro realizado.");
-        } catch (RuntimeException erro){
-            return ResponseEntity.badRequest().body("Erro"+erro.getMessage());
+    @PutMapping("/saida/{id}")
+    public ResponseEntity<?> saida(@PathVariable("id") final Long id) {
+        try {
+            Recibo recibo = this.movimentacaoService.saida(id);
+            return ResponseEntity.ok(recibo);
+        } catch (RuntimeException erro) {
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deletar (@RequestParam("id") final Long id){
-        final Movimentacao movimentacaoBanco = this.movimentacaoRepository.findById(id).orElse(null);
-
-
-        this.movimentacaoService.deletar(movimentacaoBanco);
-        return ResponseEntity.ok("Ativo (movimentacao) alterado para false.");
-
-    }
+    @DeleteMapping("/{id}")
+        public ResponseEntity<?> deletar(@RequestParam("id") final Long id){
+            final Movimentacao movimentacao = this.movimentacaoRepository.findById(id).orElse(null);
+            try {
+                this.movimentacaoService.deletar(movimentacao);
+                return ResponseEntity.ok("Movimentacao está inativa");
+            }
+            catch (DataIntegrityViolationException e) {
+                return ResponseEntity.internalServerError().body("Error: " + e.getCause().getCause().getMessage());
+            }
+            catch (RuntimeException e){
+                return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+            }
+        }
 }

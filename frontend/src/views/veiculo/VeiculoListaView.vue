@@ -5,7 +5,7 @@
                 <h2 class="fs-3">Veiculos</h2>
             </div>
             <div class="col-md-2 d-grid gap-2">
-                <router-link to="/veiculo/formulario" type="button" class="btn btn-primary">Cadastrar</router-link>
+                <router-link to="/veiculo/formulario" type="button" class="btn btn-warning">Cadastrar</router-link>
             </div>
         </div>
         <div class="row">

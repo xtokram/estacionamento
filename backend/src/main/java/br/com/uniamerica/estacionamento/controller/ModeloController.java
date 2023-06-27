@@ -21,8 +21,8 @@ public class ModeloController {
     private ModeloService modeloService;
 
 
-    @GetMapping
-    public ResponseEntity<?> findByIdParam(@RequestParam("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findByIdParam(@PathVariable("id") final Long id){
         final Modelo modelo = this.modeloRepository.findById(id).orElse(null);
 
         return modelo == null
@@ -37,8 +37,6 @@ public class ModeloController {
 
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody final Modelo modelo){
-
-
         try{
             this.modeloService.cadastro(modelo);
             return ResponseEntity.ok("Registro realizado com sucesso");
@@ -51,8 +49,8 @@ public class ModeloController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Modelo modelo){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar(@PathVariable("id") final Long id, @RequestBody final Modelo modelo){
         try{
             final Modelo modeloData = this.modeloRepository.findById(id).orElse(null);
 
@@ -69,8 +67,8 @@ public class ModeloController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete (@RequestParam("id") final Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable("id") final Long id){
         final Modelo modeloData = this.modeloRepository.findById(id).orElse(null);
 
         try{

@@ -1,8 +1,9 @@
 <template>
+    
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-10 text-start">
-                <h2 class="fs-3">Movimentações</h2>
+                <h2 class="fs-3">Movimentações ativas</h2>
             </div>
             <div class="col-md-2 d-grid gap-2">
                 <router-link to="/movimentacao/formulario" type="button" class="btn btn-warning">Cadastrar</router-link>
@@ -18,8 +19,6 @@
                             <th>ID VEICULO</th>
                             <th>CONDUTOR</th>
                             <th>ENTRADA</th>
-                            <th>SAIDA</th>
-                            <th>VALOR TOTAL</th>
                             <th>GERENCIAR</th>
                         </tr>
                     </thead>
@@ -33,8 +32,6 @@
                             <td> {{ item.veiculo.id }} </td>
                             <td> {{ item.condutor.nome }} </td>
                             <td> {{ item.entrada }} </td>
-                            <td> {{ item.saida }} </td>
-                            <td> {{ item.valorTotal }} </td>
                             <th class="col-md-2">
                                 <div>
                                     <router-link type="button" class="btn btn-outline-warning"
@@ -62,6 +59,7 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import { formatDate } from '../../dateUtils';
 
 import movimentacaoClient from '@/client/movimentacao.client';
 import { Movimentacao } from '@/model/movimentacao';
@@ -94,7 +92,8 @@ export default defineComponent({
                 .catch(error => {
                     console.log
                 })
-        }
+        },
+        formatDate
     }
 });
 

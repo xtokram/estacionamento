@@ -24,7 +24,7 @@ public class ConfiguracaoController {
             this.configuracaoService.cadastrar(configuracao);
             return ResponseEntity.ok(configuracao);
         } catch (RuntimeException erro){
-            return ResponseEntity.badRequest().body(erro.getMessage());
+            return ResponseEntity.badRequest().body("Erro"+erro.getMessage());
         }
     }
 
@@ -33,8 +33,8 @@ public class ConfiguracaoController {
         return ResponseEntity.ok(this.configuracaoRepository.findAll());
     }
 
-    @PutMapping
-    public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody Configuracao configuracao){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar (@PathVariable("id") final Long id, @RequestBody Configuracao configuracao){
         try{
             final Configuracao configuracaoBanco = this.configuracaoRepository.findById(id).orElse(null);
 
@@ -45,14 +45,14 @@ public class ConfiguracaoController {
             this.configuracaoRepository.save(configuracao);
             return ResponseEntity.ok("Registro atualizado.");
         }catch (DataIntegrityViolationException erro){
-            return ResponseEntity.internalServerError().body(erro.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Erro" + erro.getCause().getCause().getMessage());
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body("Erro" + erro.getMessage());
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete (@RequestParam("id") final Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable("id") final Long id){
         final Configuracao configuracaoBanco = this.configuracaoRepository.findById(id).orElse(null);
 
         if (configuracaoBanco == null){

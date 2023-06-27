@@ -23,13 +23,13 @@
         <div class="row mt-3">
             <div class="col-md-3 offset-md-6">
                 <div class="d-grid gap-2">
-                    <router-link type="button" class="btn btn-primary" to="/marca/lista">Voltar
+                    <router-link type="button" class="btn btn-secondary" to="/marca/lista">Voltar
                     </router-link>
                 </div>
             </div>
             <div class="col-md-3 ">
                 <div class="d-grid gap-2">
-                    <button v-if="this.form === undefined" type="button" class="btn btn-success"
+                    <button v-if="this.form === undefined" type="button" class="btn btn-warning"
                         @click="onClickCadastrar()">
                         Cadastrar
                     </button>

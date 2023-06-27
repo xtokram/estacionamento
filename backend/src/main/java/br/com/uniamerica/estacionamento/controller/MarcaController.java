@@ -19,12 +19,12 @@ public class MarcaController {
     @Autowired
     public MarcaService marcaService;
 
-    @GetMapping
-    public ResponseEntity<?> findByParam(@RequestParam("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findByParam(@PathVariable("id") final Long id){
         final Marca marca = this.marcaRepository.findById(id).orElse(null);
 
         return marca == null
-                ? ResponseEntity.badRequest().body("Condutor nao encontrado")
+                ? ResponseEntity.badRequest().body("Marca não encontrada")
                 : ResponseEntity.ok(marca);
     }
     @GetMapping("/lista")
@@ -38,12 +38,12 @@ public class MarcaController {
             this.marcaService.cadastrar(marca);
             return ResponseEntity.ok("Registro realizado");
         }catch (Exception erro){
-            return ResponseEntity.badRequest().body("Erro" + erro.getMessage());
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> editar (@RequestParam("id") final Long id, @RequestBody final Marca marca){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar (@PathVariable("id") final Long id, @RequestBody final Marca marca){
         try{
             final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
 
@@ -60,8 +60,8 @@ public class MarcaController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete (@RequestParam("id") final Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable("id") final Long id){
         final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
         try{
             this.marcaService.deletar(marcaBanco);

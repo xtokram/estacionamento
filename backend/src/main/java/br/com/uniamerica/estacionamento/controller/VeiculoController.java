@@ -20,8 +20,8 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
-    @GetMapping
-    public ResponseEntity<?> findByIdParam(@RequestParam("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findByIdParam(@PathVariable("id") final Long id){
         final Veiculo veiculo = veiculoRepository.findById(id).orElse(null);
 
         return veiculo == null
@@ -48,8 +48,8 @@ public class VeiculoController {
             return ResponseEntity.badRequest().body(erro.getMessage());
         }
     }
-    @PutMapping
-    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Veiculo veiculo){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editar(@PathVariable("id") final Long id, @RequestBody final Veiculo veiculo){
         try{
             final Veiculo veiculoBanco = this.veiculoRepository.findById(id).orElse(null);
 
@@ -60,21 +60,21 @@ public class VeiculoController {
             this.veiculoRepository.save(veiculo);
             return ResponseEntity.ok("Registro atualizado");
         }catch (DataIntegrityViolationException erro){
-            return ResponseEntity.internalServerError().body(erro.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Erro" + erro.getCause().getCause().getMessage());
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body("Erro" + erro.getMessage());
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete (@RequestParam("id") final Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete (@PathVariable("id") final Long id){
         final Veiculo veiculoBanco = this.veiculoRepository.findById(id).orElse(null);
 
         try{
             this.veiculoService.deletar(veiculoBanco);
             return ResponseEntity.ok("Registro deletado");
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body("Erro"+erro.getMessage());
         }
     }
 }

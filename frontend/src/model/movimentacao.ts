@@ -2,6 +2,8 @@ import { AbstractEntity } from "./abstract-entity";
 import { Condutor } from "./condutor";
 import { Veiculo } from "./veiculo";
 
+import { parseDate } from '../dateUtils';
+
 export class Movimentacao extends AbstractEntity {
     veiculo! : Veiculo
     condutor! : Condutor

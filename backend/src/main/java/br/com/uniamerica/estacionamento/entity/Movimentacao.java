@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -28,6 +29,10 @@ public class Movimentacao extends AbstractEntity{
     @Column(name = "saida")
     private LocalDateTime saida;
     @Getter @Setter
+    @Column(name= "tempo")
+    private Long tempo;
+
+    @Getter @Setter
     @Column(name = "hora")
     private Integer hora;
     @Getter @Setter
@@ -41,7 +46,7 @@ public class Movimentacao extends AbstractEntity{
     private LocalTime tempoMulta;
     @Getter @Setter
     @Column(name = "valor_desconto")
-    private BigDecimal valorDesconto;
+    private Long valorDesconto;
     @Getter @Setter
     @Column(name = "valor_multa")
     private BigDecimal valorMulta;
@@ -54,4 +59,32 @@ public class Movimentacao extends AbstractEntity{
     @Getter @Setter
     @Column(name = "valor_hora_multa")
     private BigDecimal valorHoraMulta;
+
+    public int calcularHorasUtilizadas() {
+        Duration duracao = Duration.between(entrada,saida);
+        long horas = duracao.toHours();
+        return (int) horas;
+    }
+
+    public BigDecimal calcularValorTotal() {
+        int horasUtilizadas = calcularHorasUtilizadas();
+        BigDecimal resultado = valorHora.multiply(BigDecimal.valueOf(horasUtilizadas));
+        resultado = resultado.subtract(BigDecimal.valueOf(10));
+        return resultado;
+
+    }
+
+    public String gerarRelatorio() {
+        StringBuilder relatorio = new StringBuilder();
+        relatorio.append("Data e Hora de Entrada: ").append(entrada).append("\n");
+        relatorio.append("Data e Hora de Saída: ").append(saida).append("\n");
+        relatorio.append("Condutor: ").append(condutor.getNome()).append("\n");
+        relatorio.append("Veículo: ").append(veiculo.getModelo().getNome()).append("\n");
+        relatorio.append("Placa: ").append(veiculo.getPlaca()).append("\n");
+        relatorio.append("Quantidade de Horas Utilizadas: ").append(calcularHorasUtilizadas()).append("\n");
+        relatorio.append("Valor a Pagar: ").append(calcularValorTotal()).append("\n");
+        relatorio.append("Valor Desconto: ").append(valorDesconto);
+
+        return relatorio.toString();
+    }
 }
