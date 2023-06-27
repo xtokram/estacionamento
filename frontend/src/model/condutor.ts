@@ -12,3 +12,4 @@ export class Condutor extends AbstractEntity{
         this.ativo = true
     }
 }
+

@@ -1,46 +1,46 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HomeView from '@/views/HomeView.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    HomeView,
-  },
-});
-
-</script>
-
 <template>
-<nav>
-  <router-link to="/">
-  </router-link>
-  <div class="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/cadastrarcondutor">Cadastrar Condutor</router-link>
-    <router-link to="/cadastrarmodelo">Cadastrar Modelo</router-link>
-    <router-link to="/cadastrarmarca">Cadastrar Marca</router-link>
-    <router-link to="/cadastrarVeiculo">Cadastrar Veiculo</router-link>
-  </div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="nav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><router-link to="/" class="router-link-nav">Seja bem vindo</router-link></li>
+        <li class="nav-item"><router-link to="/marca/lista" class="router-link-nav">Gerenciar Marcas</router-link></li>
+        <li class="nav-item"><router-link to="/modelo/lista" class="router-link-nav">Gerenciar Modelos</router-link></li>
+        <li class="nav-item"><router-link to="/veiculo/lista" class="router-link-nav">Gerenciar Veiculos</router-link></li>
+        <li class="nav-item"><router-link to="/condutor/lista" class="router-link-nav">Gerenciar Condutores</router-link></li>
+        <li class="nav-item"><router-link to="/movimentacao/lista" class="router-link-nav">Gerenciar Movimentações</router-link></li>
+        <li class="nav-item"><router-link to="/configuracao/lista" class="router-link-nav">Gerenciar Configurações</router-link></li>
+      </ul>
+    </div>
   </nav>
-<router-view/>
+  <router-view/>
 </template>
 
 <style lang="scss">
+
+
+
+@import "~/node_modules/bootstrap/scss/bootstrap";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
 #app {
   font-family: -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ,Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  max-width: 500px;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: top;
-  justify-content: center;
+  color: #ffffff;
+}
+
+li {
+  padding: 12px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #ffffff;
+    }
+  }
 }
 
 nav {
@@ -70,19 +70,9 @@ a {
     }
 }
 }
-/*Reset css*/
-*{
-  padding: 0;
-  margin: 0;
-  border: 0;
-  box-sizing: border-box;
+body{
+  background-color: #1e1f1e;
+  margin: 0px;
+  padding: 0px;
 }
-
-body {
-  background-color:#1e1f1e;
-}
-
-
-
-
 </style>

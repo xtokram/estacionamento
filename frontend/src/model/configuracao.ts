@@ -8,9 +8,9 @@ export class Configuracao extends AbstractEntity {
     tempoParaDesconto! : number
     tempoDeDesconto! : number
     gerarDesconto! : boolean
-    vagasMoto! : number
+    vagasMotos! : number
     vagasCarro! : number
-    vagasVan! : number
+    vagasVans! : number
 
     constructor(){
         super()
