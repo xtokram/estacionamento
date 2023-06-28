@@ -31,7 +31,7 @@
                             </td>
                             <td> {{ item.veiculo.id }} </td>
                             <td> {{ item.condutor.nome }} </td>
-                            <td> {{ item.entrada }} </td>
+                            <td> {{ formatDate(item.entrada) }} </td>
                             <th class="col-md-2">
                                 <div>
                                     <router-link type="button" class="btn btn-outline-warning"

@@ -1,6 +1,6 @@
 <template>
     <div class="container col-6">
-        <h3 class="mt-5">Cadastre uma nova Movimentação</h3>
+        <h3 class="mt-5">{{ form }} Movimentação</h3>
         <hr>
 
         <div v-if="mensagem.ativo" class="row">
@@ -11,16 +11,16 @@
                 </div>
             </div>
         </div>
-        <div v-if="form === 'finalizar'" class="col-md-12 text-start">
+        <div v-if="form === 'finalizar' && mensagem.titulo === 'Sucesso - '" class="col-md-12 text-start">
                 <div :class="mensagem.css" role="alert">
-                    <strong>{{ mensagem.titulo }}</strong>
+                    <strong>Recibo</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <br>Entrada: {{ mensagem.mensagem.entrada }}
-                    <br>Saida: {{ mensagem.mensagem.saida }}
-                    <!--<br>Condutor: {{ mensagem.mensagem.condutor.nome }}-->
-                    <!-- <br>Veiculo: {{ mensagem.mensagem.veiculo.placa }}-->
+                    <br>Entrada: {{mensagem.mensagem.entrada}}
+                    <br>Saida: {{mensagem.mensagem.saida}}
+                    <br>Condutor: {{ mensagem.mensagem.condutor?.nome }}
+                    <br>Veiculo: {{ mensagem.mensagem.veiculo?.placa }}
                     <br>Tempo: {{ mensagem.mensagem.tempo }} Horas
-                    <br>tempo para desconto:{{ mensagem.mensagem.tempoParaDesconto }} Horas
+                    <br>Tempo minímo para desconto: {{ mensagem.mensagem.tempoParaDesconto }} Horas
                     <br>Valor Total: {{ mensagem.mensagem.valorTotal }} R$
                     <br>Desconto: {{ mensagem.mensagem.desconto }} R$
                 </div>
@@ -39,13 +39,17 @@
                 </select>
             </div>
             <div class="col-md-12 text-start">
-                <label class="form-label mt-3">Dia entrada *</label>
-                <input type="text" this class="form-control" placeholder="DD/MM/YYYY" v-model="entradaString">
+                <label class="form-label mt-3">Data entrada *</label>
+                <input type="text" this class="form-control" placeholder="Ex: DD/MM/YYYY" v-model="entradaString">
             </div>
             <div class="col-md-12 text-start">
+                <label class="form-label mt-3">Horário entrada *</label>
+                <input type="text" this class="form-control" placeholder="Ex: 08:00:00" v-model="horarioEntradaString">
+            </div>
+            <!--<div class="col-md-12 text-start">
                 <label class="form-label mt-3">Horário Entrada *</label>
                 <input type="text" this class="form-control" placeholder="08:00:00" v-model="horarioEntradaString">
-            </div>
+            </div>-->
             
         </div>
         
@@ -58,17 +62,17 @@
             </div>
             <div class="col-md-3 ">
                 <div class="d-grid gap-2">
-                    <button v-if="this.form === undefined" type="button" class="btn btn-warning"
+                    <button v-if="form === undefined" type="button" class="btn btn-warning"
                         @click="onClickCadastrar()">
                         Cadastrar
                     </button>
-                    <button v-if="this.form === 'editar'" type="button" class="btn btn-warning" @click="onClickEditar()">
+                    <button v-if="form === 'editar'" type="button" class="btn btn-warning" @click="onClickEditar()">
                         Editar
                     </button>
-                    <button v-if="this.form === 'excluir'" type="button" class="btn btn-danger" @click="onClickExcluir()">
+                    <button v-if="form === 'excluir'" type="button" class="btn btn-danger" @click="onClickExcluir()">
                         Excluir
                     </button>
-                    <button v-if="this.form === 'finalizar'" type="button" class="btn btn-info" @click="FinalizarMovimentacao()">
+                    <button v-if="form === 'finalizar'" type="button" class="btn btn-info" @click="FinalizarMovimentacao()">
                         Finalizar
                     </button>
               <div v-if="relatorio" class="d-flex justify-content-center align-items-center vh-50">
@@ -88,6 +92,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import { formatDate } from '../../dateUtils';
 import { parseDate } from '../../dateUtils';
 
 
@@ -114,9 +119,8 @@ export default defineComponent({
                 css: "" as string
             },
             entradaString: '',
-            saidaString: '',
-            horarioEntradaString: '',
-            horarioSaidaString: ''
+            horarioEntradaString: ''
+            
         }
     },
     computed: {
@@ -166,15 +170,13 @@ export default defineComponent({
         },
         onClickCadastrar() {
             this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
-            //this.movimentacao.saida = parseDate(this.saidaString, this.horarioSaidaString)
             movimentacaoClient.cadastrar(this.movimentacao)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
                     entradaString: ''
                     this.mensagem.ativo = true
-                    
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    //this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
@@ -187,14 +189,13 @@ export default defineComponent({
         },
         onClickEditar() {
             this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
-
             movimentacaoClient.editar(this.movimentacao.id, this.movimentacao)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
     
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. "
+                    this.mensagem.titulo = "Sucesso - "
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
@@ -206,7 +207,6 @@ export default defineComponent({
                 });
         },
         onClickExcluir() {
-            this.movimentacao.entrada = parseDate(this.entradaString, this.horarioEntradaString)
             movimentacaoClient.deletar(this.movimentacao.id)
                 .then(sucess => {
                     this.movimentacao = new Movimentacao()
@@ -226,10 +226,9 @@ export default defineComponent({
             movimentacaoClient.fecharMovimentacao(this.movimentacao.id)
             .then(sucess => {
                 this.movimentacao = new Movimentacao()
-                this.mensagem.ativo = true;
+                this.mensagem.ativo = false;
                 this.mensagem.mensagem = sucess;
-                console.log(sucess)
-                this.mensagem.titulo = "Parabens! ";
+                this.mensagem.titulo = "Sucesso - ";
                 this.mensagem.css = "alert alert-success alert-dismissible fade show"
             })
             .catch(error => {
@@ -240,7 +239,7 @@ export default defineComponent({
                 this.mensagem.css = "alert alert-danger alert-dismissible fade show"
             })
             
-        },
+        },formatDate
         
         
     }

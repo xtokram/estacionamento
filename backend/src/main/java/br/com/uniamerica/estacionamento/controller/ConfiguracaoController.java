@@ -24,7 +24,7 @@ public class ConfiguracaoController {
             this.configuracaoService.cadastrar(configuracao);
             return ResponseEntity.ok(configuracao);
         } catch (RuntimeException erro){
-            return ResponseEntity.badRequest().body("Erro"+erro.getMessage());
+            return ResponseEntity.badRequest().body(erro.getMessage());
         }
     }
 
@@ -33,6 +33,14 @@ public class ConfiguracaoController {
         return ResponseEntity.ok(this.configuracaoRepository.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") final Long id){
+        final Configuracao configuracao = this.configuracaoRepository.findById(id).orElse(null);
+
+        return configuracao == null
+                ? ResponseEntity.badRequest().body("Nenhum valor encontrado")
+                : ResponseEntity.ok(configuracao);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<?> editar (@PathVariable("id") final Long id, @RequestBody Configuracao configuracao){
         try{
@@ -45,9 +53,9 @@ public class ConfiguracaoController {
             this.configuracaoRepository.save(configuracao);
             return ResponseEntity.ok("Registro atualizado.");
         }catch (DataIntegrityViolationException erro){
-            return ResponseEntity.internalServerError().body("Erro" + erro.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body(erro.getCause().getCause().getMessage());
         }catch (RuntimeException erro){
-            return ResponseEntity.internalServerError().body("Erro" + erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
     }
 

@@ -41,8 +41,8 @@
                             <th>{{ item.vagasMotos }}</th>
                             <th>{{ item.vagasCarro }}</th>
                             <th>{{ item.vagasVans }}</th>
-                            <th>{{ item.inicioExpediente }}</th>
-                            <th>{{ item.fimExpediente }}</th>
+                            <th>{{ formatTime(item.inicioExpediente) }}</th>
+                            <th>{{ formatTime(item.fimExpediente) }}</th>
 
                             <th class="col-md-2">
                                 <div>
@@ -64,6 +64,8 @@
 
 import { defineComponent } from 'vue';
 
+import { formatTime } from '@/dateUtils';
+
 import { Configuracao } from '@/model/configuracao';
 import configuracaoClient from '@/client/configuracao.client';
 
@@ -79,6 +81,7 @@ export default defineComponent({
         this.findAll();
     },
     methods: {
+        formatTime,
         findAll(){
             configuracaoClient.listAll()
                 .then(sucess => {

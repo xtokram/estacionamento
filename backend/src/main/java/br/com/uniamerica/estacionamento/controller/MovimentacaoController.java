@@ -81,17 +81,17 @@ public class MovimentacaoController {
     }
 
     @DeleteMapping("/{id}")
-        public ResponseEntity<?> deletar(@RequestParam("id") final Long id){
+        public ResponseEntity<?> deletar(@PathVariable("id") final Long id){
             final Movimentacao movimentacao = this.movimentacaoRepository.findById(id).orElse(null);
             try {
                 this.movimentacaoService.deletar(movimentacao);
                 return ResponseEntity.ok("Movimentacao está inativa");
             }
             catch (DataIntegrityViolationException e) {
-                return ResponseEntity.internalServerError().body("Error: " + e.getCause().getCause().getMessage());
+                return ResponseEntity.internalServerError().body(e.getCause().getCause().getMessage());
             }
             catch (RuntimeException e){
-                return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
         }
 }

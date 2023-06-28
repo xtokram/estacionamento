@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg">
-    <div class="nav">
+  <nav class="navbar navbar-expand-lg nav-bar-color">
+    <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item"><router-link to="/" class="router-link-nav">Seja bem vindo</router-link></li>
         <li class="nav-item"><router-link to="/marca/lista" class="router-link-nav">Gerenciar Marcas</router-link></li>
@@ -45,26 +45,22 @@ li {
 
 nav {
   background-color:none;
-  position: absolute;
-  top: 0px;
-  left:0%;
-  width: 100%;
-  height: 55px;   
+  height: 80px;   
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   padding: 2px;
   border-bottom: black solid;
 a {
     display: flex;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 0;
     list-style: none;
     text-decoration: none;
     color: #616161;
     position:relative;
-    margin-right: 90px;
-    margin-left: 50px;
+    margin-right: 45px;
+    margin-left: 45px;
     &.router-link-exact-active {
       color: white;
     }

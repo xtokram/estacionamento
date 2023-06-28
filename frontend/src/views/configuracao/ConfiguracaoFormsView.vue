@@ -142,8 +142,8 @@ export default defineComponent({
                     this.configuracao = new Configuracao()
 
                     this.mensagem.ativo = true
-                    this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.mensagem = "Nova configuração cadastrada";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
@@ -161,7 +161,7 @@ export default defineComponent({
 
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. "
+                    this.mensagem.titulo = "Sucesso - "
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {

@@ -59,7 +59,7 @@ public class MovimentacaoService {
 
         Movimentacao movimentacao = this.movimentacaoRepository.findById(id).orElse(null);
 
-        Assert.isTrue(movimentacao.getSaida() == null, "Movimentação Finalizada.");
+        Assert.isTrue(movimentacao.getSaida() == null, "Movimentação já Finalizada.");
 
         movimentacao.setSaida(LocalDateTime.now());
 

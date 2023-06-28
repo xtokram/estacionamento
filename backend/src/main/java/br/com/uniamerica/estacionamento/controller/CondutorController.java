@@ -43,12 +43,12 @@ public class CondutorController {
         try{
             this.condutorService.cadastrar(condutor);
             return ResponseEntity.ok("Condutor Cadastrado.");
-        } catch (DataIntegrityViolationException erro){
+        }catch (DataIntegrityViolationException erro){
             return ResponseEntity.badRequest().body(erro.getMessage());
         } catch (RuntimeException erro){
-            return ResponseEntity.badRequest().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         } catch (Exception erro){
-            return ResponseEntity.badRequest().body(erro.getMessage());
+            return ResponseEntity.internalServerError().body(erro.getMessage());
         }
 
     }

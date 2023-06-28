@@ -14,12 +14,12 @@
         <div class="row">
             <div class="col-md-12 text-start">
                 <label class="form-label">Nome do Modelo *</label>
-                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" v-model="modelo.nome">
+                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" v-model="modelo.nome" placeholder="Ex: Corolla">
             </div>
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3">Nome da Marca *</label>
                 <select v-model="modelo.marca" class="form-select" >
-                    <option v-for="item in marca" :value="item"> {{ item.nome }}</option>
+                    <option v-for="item in marca" :value="item"> {{ item.nome }} </option>
                 </select>
             </div>
         </div>
@@ -114,14 +114,14 @@ export default defineComponent({
 
                     this.mensagem.ativo = true
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show"
                 })
                 .catch(error => {
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = mensagemError;
-                    this.mensagem.titulo = "Error. ";
+                    this.mensagem.titulo = "Error - ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show"
                 })
         },

@@ -27,13 +27,13 @@ public class VeiculoService {
 
     @Transactional(rollbackFor = Exception.class)
     public void cadastrar(final Veiculo veiculo){
-        Assert.isTrue(veiculo.getModelo() != null, "Erro, digite um modelo");
-        Assert.isTrue(veiculo.getTipo() != null, "Erro, digite um tipo");
-        Assert.isTrue(veiculo.getCor() != null, "Erro, digite uma cor");
-        Assert.isTrue(veiculo.getPlaca() != null, "Erro, digite uma placa");
+        Assert.isTrue(veiculo.getModelo() != null, "Insira um modelo");
+        Assert.isTrue(veiculo.getTipo() != null, "Insira um tipo para o veículo");
+        Assert.isTrue(veiculo.getCor() != null, "Insira uma cor");
+        Assert.isTrue(veiculo.getPlaca() != null, "Insira uma placa");
         String regexPlaca = "^[A-Z]{3}\\-\\d{4}";
-        Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "Formato da placa incorreto");
-        Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"Erro, placa já existente.");
+        Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "O formato da placa está incorreto");
+        Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"A placa inserida já está cadastrada");
 
         this.veiculoRepository.save(veiculo);
     }
@@ -42,14 +42,14 @@ public class VeiculoService {
     public void editar(final Veiculo veiculo, final Long id){
         final Veiculo veiculoBanco = this.veiculoRepository.findById(veiculo.getId()).orElse(null);
 
-        Assert.isTrue(veiculo.getModelo() != null, "Erro, digite um modelo");
-        Assert.isTrue(veiculo.getCor() != null, "Erro, digite uma cor");
-        Assert.isTrue(veiculo.getTipo() != null, "Erro, digite um tipo de veiculo");
+        Assert.isTrue(veiculo.getModelo() != null, "Insira um modelo");
+        Assert.isTrue(veiculo.getCor() != null, "Insira uma cor");
+        Assert.isTrue(veiculo.getTipo() != null, "Insira um tipo de veiculo");
 
-        Assert.isTrue(veiculo.getPlaca() != null, "Erro, digite uma placa");
+        Assert.isTrue(veiculo.getPlaca() != null, "Insira uma placa");
         String regexPlaca = "^[A-Z]{3}\\-\\d{4}";
-        Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "Formato da placa incorreto");
-        Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"Erro, placa já existente.");
+        Assert.isTrue(veiculo.getPlaca().matches(regexPlaca), "O formato da placa está incorreto");
+        Assert.isTrue(this.veiculoRepository.findPlaca(veiculo.getPlaca()).isEmpty(),"Placa do carro já cadastrada.");
 
         this.veiculoRepository.save(veiculo);
     }

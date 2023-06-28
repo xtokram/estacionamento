@@ -14,15 +14,15 @@
         <div class="row">
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3">Nome do Condutor *</label>
-                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" v-model="condutor.nome">
+                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" placeholder="Ex: João da Silva" v-model="condutor.nome">
             </div>
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3" >Cpf do Condutor *</label>
-                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" placeholder="121.121.121-12" v-model="condutor.cpf">
+                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" placeholder="123.456.789-10" v-model="condutor.cpf">
             </div>
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3" >Telefone do Condutor *</label>
-                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" placeholder="+12(121)12121-1212" v-model="condutor.telefone">
+                <input type="text" :disabled="this.form === 'excluir' ?  '' : disabled" class="form-control" placeholder="+55(045)91122-3344" v-model="condutor.telefone">
             </div>
         </div>
         
@@ -109,7 +109,7 @@ export default defineComponent({
                 .catch(error => {
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
-                    this.mensagem.mensagem = error;
+                    this.mensagem.mensagem = mensagemError;
                     this.mensagem.titulo = "Falha - ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show"
                 })

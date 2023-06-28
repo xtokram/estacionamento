@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3">Placa *</label>
-                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control" placeholder="ABC-1234 || AAA1A12"
+                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control" placeholder="Formato: ABC-1234 ou AAA1A12"
                     v-model="veiculo.placa">
             </div>
             <div class="col-md-12 text-start">
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-12 text-start">
                 <label class="form-label mt-3">Ano *</label>
-                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control"
+                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control" placeholder="Ex: 2023"
                     v-model="veiculo.ano">
             </div>
         </div>
@@ -142,7 +142,7 @@ export default defineComponent({
 
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show";
                 })
                 .catch(error => {
@@ -160,14 +160,14 @@ export default defineComponent({
 
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show";
                 })
                 .catch(error => {
                     const mensagemError = error.data;
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = mensagemError;
-                    this.mensagem.titulo = "Error. ";
+                    this.mensagem.titulo = "Erro -  ";
                     this.mensagem.css = "alert alert-danger alert-dismissible fade show";
                 });
         },

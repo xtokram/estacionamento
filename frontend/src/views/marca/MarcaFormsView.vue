@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12 text-start">
                 <label class="form-label">Nome da Marca *</label>
-                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control"
+                <input type="text" :disabled="this.form === 'excluir' ? '' : disabled" class="form-control" placeholder="Ex: Toyota"
                     v-model="marca.nome">
             </div>
         </div>
@@ -91,7 +91,7 @@ export default defineComponent({
 
                     this.mensagem.ativo = true;
                     this.mensagem.mensagem = sucess;
-                    this.mensagem.titulo = "Parabens. ";
+                    this.mensagem.titulo = "Sucesso - ";
                     this.mensagem.css = "alert alert-success alert-dismissible fade show";
                 })
                 .catch(error => {
